@@ -99,7 +99,7 @@ define(["jquery",
 					 this.nbItemRenderedOffScreen = 8;
 					 this.initialOffsetTop = this.$el.offset().top;
 
-					 this.viewPortHeight = platformInfo.getWindowHeight()-this.$el.offset().top-MARGIN_BOTTOM; // TODO: Substract offsetTop
+					 this.viewPortHeight = getWindowHeight() - this.$el.offset().top - MARGIN_BOTTOM;
 
 					 this.elementsList = this.getRenderedElements();
 
@@ -112,10 +112,7 @@ define(["jquery",
 
 
 					 this.initialStartIdx = 0;
-					 // this.initialEndIdx = Math.round(this.viewPortHeight / (this.ItemHeight / 5));
-					 // FIXME
-					 this.initialEndIdx = 100; //200;
-
+					 this.initialEndIdx = 100;
 					 this.hasNewElements = false;
 
 					 this.numberOfItemRendered = this.initialEndIdx - this.initialStartIdx;
