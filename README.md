@@ -23,39 +23,37 @@ Use :
 -------------
 Example Using requirejs to load files :
 
-```
-/*global define */
-define([
-	'rawgithub/src/js/backbone-infinite-list',
-	'rawgithub/examples/datasets/people',
-	'tpl!rawgithub/examples/html/people.html'
-], function (InfiniteList,
-				  peopleData,
-				  peopleTpl) {
+# Extends InfiniteList View
 
-	'use strict';
-
-	var ScrollablePeople = InfiniteList.extend({
-
-		getSingleElementTemplate : function () {
-			return peopleTpl;
-		},
-
-		getData : function () {
-			return peopleData.toJSON();
-		},
-
-		displayNewElementAlert : function () {
-
-		}
-
-
-	});
-
-	return ScrollablePeople;
-});
 ```
 
+var ScrollableImpl = InfiniteList.extend({ });
+
+```
+
+# Implement the following methods
+
+// You must implement the following methods
+getSingleElementTemplate : function () {
+	// Template for a single element
+},
+getData : function () {
+	// The full list of elements that will be rendered
+},
+displayNewElementAlert : function () {
+
+}
+
+# Render the list
+
+
+
+```
+var scrollableInstance = new ScrollableImpl();
+scrollablePeople.setElement(theDivToRenderTheListInto);
+scrollableInstance.render();
+
+```
 
 
 
