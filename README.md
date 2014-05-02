@@ -9,15 +9,11 @@ NOTICE: Code is in working Draft.
 Scroll on the window is not implemented (You can only use overflow scroll / webkit-overflow scroll )
 
 
-Demo Available Here : http://ganmor.github.io/backbone-infinite-list/
-
-
-
 Works smoothly on Android 4+;
 iOs 5+;
 
+Demo Available Here : http://ganmor.github.io/backbone-infinite-list/
 
-See demos here
 
 Use :
 -------------
