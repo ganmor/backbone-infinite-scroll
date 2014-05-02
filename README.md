@@ -21,7 +21,7 @@ See demos here
 
 Use :
 -------------
-Example Using requirejs to load files :
+
 
 * Extends InfiniteList View
 
