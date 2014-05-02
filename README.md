@@ -16,12 +16,13 @@ iOs 5+;
 See demos here
 
 
+
+
+* Installation :
+
 Bower :
 
-Installation :
-
-
-Developement :
+* Developement :
 
 Clone repo and run
 bower install
