@@ -392,19 +392,22 @@ define([
 		 */
 		 repositionListUp: function (newScroll) {
 
-			 var marginTop, distToTargetOffset, move, willReachTop, isTooCloseToTop, isTooCloseToBottom;
+			var targetOffsetTop, move, willReachTop, isTooCloseToBottom;
 
-			 marginTop = this.viewPortHeight; // Since the margin unseen at the top of the screen
 
-			 distToTargetOffset = this.offsetTop + marginTop - newScroll;
+			 // Check if the bottom of the list is not too close
+			 isTooCloseToBottom = this.offsetBottom < newScroll + this.viewPortHeight +  ( MARGIN_OUT_SCREEN / 2)
 
-			 move = distToTargetOffset / DEFAULT_ITEM_HEIGHT;
+			 // Where we want the new offset top to be
+			 targetOffsetTop = newScroll - MARGIN_OUT_SCREEN * 2;
+
+			 // Compute the move
+			 move =  Math.max( (this.offsetTop - targetOffsetTop) / DEFAULT_ITEM_HEIGHT, 0);
+
+			 // Beginning of line
 			 willReachTop = (this.startIdx-move) <= 0;
 
-			 isTooCloseToTop = (move>5) || willReachTop;
-			 isTooCloseToBottom = (this.offsetBottom - (newScroll + this.viewPortHeight)) < (this.viewPortHeight / 3);
-
-			 if (isTooCloseToTop && !isTooCloseToBottom) {
+			 if ((!isTooCloseToBottom && move>3) || willReachTop) {
 
 				 move = Math.min(move, this.startIdx); // Easy one
 
