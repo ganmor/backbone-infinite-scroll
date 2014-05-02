@@ -23,7 +23,7 @@ Use :
 -------------
 Example Using requirejs to load files :
 
-# Extends InfiniteList View
+* Extends InfiniteList View
 
 ```
 
@@ -31,8 +31,10 @@ var ScrollableImpl = InfiniteList.extend({ });
 
 ```
 
-# Implement the following methods
+* Implement the following methods
 
+
+```
 // You must implement the following methods
 getSingleElementTemplate : function () {
 	// Template for a single element
@@ -43,6 +45,7 @@ getData : function () {
 displayNewElementAlert : function () {
 
 }
+ ```
 
 # Render the list
 
