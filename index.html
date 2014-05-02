@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
 
-	 <script type="text/javascript" src="require-config.js" > </script>
-
-	<script type="text/javascript" src="https://rawgithub.com/ganmor/backbone-infinite-list/master/lib/underscore-1.6.0.js" > </script>
+	<script type="text/javascript" src="require-config.js" > </script>
 	<script type="text/javascript" src="https://rawgithub.com/ganmor/backbone-infinite-list/master/lib/require-2.1.1.js" > </script>
+	<script type="text/javascript" src="https://rawgithub.com/ganmor/backbone-infinite-list/master/lib/underscore-1.6.0.js" > </script>
+	<script type="text/javascript" src="https://rawgithub.com/ganmor/backbone-infinite-list/master/lib/jquery-2.1.0.js" > </script>
+
 
     <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -43,38 +44,17 @@
 
 <p>Infinite list</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-<div>	
-	<ul>
-		<li>
+<div id="comments-list"></div>
 		
-		</li>
-		<li>
-		
-		
-		</li>
-	</ul>		
-</div>
-		
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+  <script type="text/javascript">
+	require(['rawgithub/examples/ScrollablePeople'], function (ScrollablePeople){
+		var scrollablePeople = new ScrollablePeople();
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+		scrollablePeople.setElement($(document.querySelector('#comments-list')));
+		scrollablePeople.render();
 
-	  <script type="text/javascript">
-	  	require(['rawgithub/examples/ScrollablePeople'], function (ScrollablePeople){
-			var scrollablePeople = new ScrollablePeople();
-
-			scrollablePeople.setElement(document.querySelector('#comments-list'));
-			scrollablePeople.render();
-
-		});
-	  </script>
+	});
+  </script>
 
   </body>
 </html>
