@@ -47,7 +47,7 @@ displayNewElementAlert : function () {
 }
  ```
 
-# Render the list
+* Render the list
 
 
 
