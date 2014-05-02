@@ -16,7 +16,7 @@ iOs 5+;
 Demo Available Here : http://ganmor.github.io/backbone-infinite-list/
 
 
-Use :
+How to use :
 -------------
 
 
@@ -55,7 +55,8 @@ scrollableInstance.render();
 
 ```
 
-
+How it works
+-----------
 
 Installation :
 -------------
