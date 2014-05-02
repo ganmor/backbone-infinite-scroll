@@ -1,11 +1,5 @@
-define(['src/ScrollableView'], function (ScrollableView) {
+define(['rawgithub/src/backbone-infinite-list'], function (Infiin) {
 
-	return ScrollableView.extend({
-
-		initialize : function () {
-
-		}
-
-	};
+	return ;
 
 });
