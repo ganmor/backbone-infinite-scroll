@@ -8,6 +8,7 @@ Works with either scrolling the window or a div althought it's nicer on a div.
 NOTICE: Code is in working Draft.
 Scroll on the window is not implemented (You can only use overflow scroll / webkit-overflow scroll )
 
+WARNING : Still buggy when going up in the list, will fix this asap
 
 Works smoothly on Android 4+;
 iOs 5+;
