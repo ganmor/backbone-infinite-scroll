@@ -18,11 +18,13 @@ See demos here
 
 
 
-* Installation :
+Installation :
+-------------
 
 Bower :
 
-* Developement :
+Developement :
+-------------
 
 Clone repo and run
 bower install
