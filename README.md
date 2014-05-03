@@ -42,7 +42,12 @@ What you can't do
 How it works
 -----------
 
-The basics
+The basics : 
+
+Elements are only rendered where your viewport is ( With a little margin at the top and the bottom ).
+The rendered elements are translated from the top of the list with css translate, at the position they should have been if the whole list had been rendered
+
+In details
 
 On first render, it creates an element with a size that takes the full size the list would have taken. 
 (This is based on a approxiation of the line height, you have to define that size)
@@ -58,7 +63,7 @@ The method repositionList is all where the magic happen. You can call it regular
 
 When you go down the list, backbone infinite list add items to end of the list and virtualy compute the new position of your rendered element. When you start scrolling slower or when you stop
 
-IN details
+
 
 How to use :
 -------------
