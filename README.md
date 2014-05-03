@@ -2,7 +2,6 @@ Backbone-Infinite-List
 ===============================
 
 A backbone view with infinite scroll ( that really works on mobile )
-Works with either scrolling the window or a div althought it's nicer on a div.
 
 
 NOTICE: Code is in working Draft.
