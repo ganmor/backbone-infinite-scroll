@@ -36,7 +36,8 @@ What you can do
 What you can't do
 ------
 
-You can not add elements in the middle of the listonce rendered. ( You would loose you scroll position )
+You can not add elements in the middle of the list while scrolling. ( You would loose you scroll position )
+You cannot go back to a previous scroll position easely.
 
 
 How it works
