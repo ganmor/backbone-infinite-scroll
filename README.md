@@ -20,6 +20,7 @@ Demo Available Here : http://ganmor.github.io/backbone-infinite-list/
 Why 
 ------
 Because the browser does not like when there are too many elements in the dom.
+
 Because mobile browsers *really* don't like when there are too many elements in the dom.
 
 
