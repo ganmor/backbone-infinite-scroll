@@ -55,8 +55,38 @@ scrollableInstance.render();
 
 ```
 
+Why 
+------
+Because the browser does not like when there is too much elements in the dom
+Because mobile browsers *really* don't like when there is too much elements in the dom.
+
+
+What you can do
+------
+
+What you can't do
+------
+
+
 How it works
 -----------
+
+The basics
+
+On first render, it creates an element with a size that takes the full size the list would have taken and the list start checking your scroll position.
+(This is based on a approxiation of the line height, you have to define that size)
+
+The method repositionList is all where the magic happen. You can call it regulary, like it is done in the example, or only when a scroll event is triggered. 
+
+- You are scrolling up and the new position of the list would overlap the previous one
+- You are scrolling down and the new position of the list would overlap the previous one
+- There is no list rendered around this scroll position
+
+
+When you go down the list, backbone infinite list add items to end of the list and virtualy compute the new position of your rendered element. When you start scrolling slower or when you stop
+
+IN details
+
 
 
 Installation :
