@@ -27,8 +27,16 @@ Because mobile browsers *really* don't like when there are too many elements in 
 What you can do
 ------
 
+You can render virtually infinite list of items without having to worry about pagination.
+You can have elements in the list dynamically updated.
+You can add elements at the bottom of the list  while you scroll.
+You can add elements at the top of the list ( Feed mode )
+You can start requesting elements from your server at any given position.
+
 What you can't do
 ------
+
+You can not add elements in the middle of the listonce rendered. ( You would loose you scroll position )
 
 
 How it works
