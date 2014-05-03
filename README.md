@@ -74,14 +74,16 @@ How it works
 
 The basics
 
-On first render, it creates an element with a size that takes the full size the list would have taken and the list start checking your scroll position.
+On first render, it creates an element with a size that takes the full size the list would have taken. 
 (This is based on a approxiation of the line height, you have to define that size)
 
-The method repositionList is all where the magic happen. You can call it regulary, like it is done in the example, or only when a scroll event is triggered. 
+Then, backbone-infinite-list start checking your scroll position.
+
+The method repositionList is all where the magic happen. You can call it regulary, like it is done in the example, or only when a scroll event is triggered. Threre are three cases :
 
 - You are scrolling up and the new position of the list would overlap the previous one
 - You are scrolling down and the new position of the list would overlap the previous one
-- There is no list rendered around this scroll position
+- There is no list rendered around this scroll position, you render at an approximate position in the list
 
 
 When you go down the list, backbone infinite list add items to end of the list and virtualy compute the new position of your rendered element. When you start scrolling slower or when you stop
