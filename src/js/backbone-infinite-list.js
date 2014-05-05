@@ -1,4 +1,5 @@
-/*global define, document */
+/*global define, document, window */
+/*jslint nomen :true */
 define([
 	"jquery",
 	"underscore",
@@ -16,58 +17,63 @@ define([
 	//	Privates props and methods
 	//
 
-	var PROPS = ["-moz", "-o", "-webkit", "-ms"], TRANSFORM_PREFIX, TRANSFORM_ORIGIN_PREFIX, testDiv = document.createElement('div');
+	var PROPS = ["-moz", "-o", "-webkit", "-ms"], TRANSFORM_PREFIX, TRANSFORM_ORIGIN_PREFIX, testDiv = document.createElement('div'),
+
+		DEFAULTS = {},
+
+		getWindowHeight = function () {
+			return $(window).height();
+		},
+
+		nextFrame = (function () {
+			return window.requestAnimationFrame ||
+				window.webkitRequestAnimationFrame ||
+				window.mozRequestAnimationFrame ||
+				window.oRequestAnimationFrame ||
+				window.msRequestAnimationFrame || function (callback) {
+					return window.setTimeout(callback, 1);
+				};
+		})(),
+		cancelFrame = (function () {
+			return window.cancelRequestAnimationFrame ||
+				window.webkitCancelAnimationFrame ||
+				window.webkitCancelRequestAnimationFrame ||
+				window.mozCancelRequestAnimationFrame ||
+				window.oCancelRequestAnimationFrame ||
+				window.msCancelRequestAnimationFrame ||
+				window.clearTimeout;
+		})();
+
+
 	PROPS.forEach(function (prop) {
+
+		var browserPrefix, testProp;
 
 		function cap(str) {
 			return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
 		}
 
-		var browserPrefix = prop;
-		var testProp = cap(browserPrefix.slice(1,prop.length));
-		testDiv.style[testProp+"Transition"] = "all 1s ease";
-		if (testDiv.style[testProp+"TransitionProperty"]) {
+		browserPrefix = prop;
+		testProp = cap(browserPrefix.slice(1, prop.length));
+		testDiv.style[testProp + "Transition"] = "all 1s ease";
+		if (testDiv.style[testProp + "TransitionProperty"]) {
 			TRANSFORM_PREFIX = browserPrefix + "-transform";
 			TRANSFORM_ORIGIN_PREFIX = browserPrefix + "-transform-origin";
 		}
 	});
 
-	var DEFAULTS = {},
-
-	getWindowHeight = function () {
-		return $(window).height();
-	},
-
-	nextFrame = (function () {
-		return window.requestAnimationFrame ||
-		window.webkitRequestAnimationFrame ||
-		window.mozRequestAnimationFrame ||
-		window.oRequestAnimationFrame ||
-		window.msRequestAnimationFrame || function (callback) {
-			return setTimeout(callback, 1);
-		};
-	})(),
-	cancelFrame = (function () {
-		return window.cancelRequestAnimationFrame ||
-		window.webkitCancelAnimationFrame ||
-		window.webkitCancelRequestAnimationFrame ||
-		window.mozCancelRequestAnimationFrame ||
-		window.oCancelRequestAnimationFrame ||
-		window.msCancelRequestAnimationFrame ||
-		clearTimeout;
-	})();
 
 
 	// Default Configuration
 	DEFAULTS.DEFAULT_ITEM_HEIGHT = 50;
-	DEFAULTS.MARGIN_BOTTOM = 60,
+	DEFAULTS.MARGIN_BOTTOM = 60;
 	DEFAULTS.MARGIN_OUT_SCREEN = 5 * DEFAULTS.DEFAULT_ITEM_HEIGHT;
 
 	//
 	//	Implementation
 	//
 
-	return  Backbone.View.extend({
+	return Backbone.View.extend({
 
 
 		///
@@ -79,19 +85,22 @@ define([
 			this.$el = element;
 		},
 
-		getScroll : function(){
-			if (this.isWindowScroll)
+		getScroll : function () {
+			if (this.isWindowScroll) {
 				return Math.max($(window).scrollTop(), $(window).scrollTop() - this.initialOffsetTop);
-			else
+			} else {
 				return this.$el.scrollTop();
+			}
 		},
 
-		scrollTo : function(value){
+		scrollTo : function (value) {
 
-			if (this.isWindowScroll)
+			if (this.isWindowScroll) {
 				$(window).scrollTop(value);
-			else
+			} else {
 				this.$el.scrollTop(value);
+			}
+
 
 		},
 
@@ -100,7 +109,7 @@ define([
 			this._domReady();
 		},
 
-		reRender : function(){
+		reRender : function () {
 			this._initialize();
 			this._domReady();
 		},
@@ -113,16 +122,17 @@ define([
 			throw new Error('The delegate must implement the getSingleElementTemplate method');
 		},
 
-		displayNewElementAlert : function() {
+		displayNewElementAlert : function () {
 
-			 if (!this.newElementsView)
-				 throw new Error("newElementsView is no defined in scrollableview impl, it is needed to display a banner when new elements arrive");
+			if (!this.newElementsView) {
+				throw new Error("newElementsView is no defined in scrollableview impl, it is needed to display a banner when new elements arrive");
+			}
 
-			 this.hasNewElements = true;
+			this.hasNewElements = true;
 
-			 // Display an alert
-			 this.newElementsView.show();
-		 },
+			// Display an alert
+			this.newElementsView.show();
+		},
 
 		/**
 		*	Return the elements that the list will be rendering
@@ -137,13 +147,13 @@ define([
 
 		_initialize: function (config) {
 
-			var fragmentHtml;
+			var fragmentHtml, elementsHeight;
 
-			config = config||{};
+			config = config || {};
 
-			this._configuration = _.extend(  DEFAULTS, config);
+			this._configuration = _.extend(DEFAULTS, config);
 
-			this.ItemHeight = this._configuration.DEFAULT_ITEM_HEIGHT
+			this.ItemHeight = this._configuration.DEFAULT_ITEM_HEIGHT;
 			this.nbItemRenderedOffScreen = 8;
 			this.initialOffsetTop = this.$el.offset().top;
 
@@ -159,7 +169,8 @@ define([
 			this.$el.html(fragmentHtml);
 
 
-			var elementsHeight = $(window).height() - this.$el.offset().top;
+			elementsHeight = $(window).height() - this.$el.offset().top;
+
 			this.$el.css("height", elementsHeight + "px");
 			this.$el.css("overflow-y", "scroll");
 			this.$el.css("-webkit-overflow-scrolling", "touch");
@@ -170,6 +181,7 @@ define([
 
 			this.numberOfItemRendered = this.initialEndIdx - this.initialStartIdx;
 
+			// Reset
 			this.startIdx = undefined;
 			this.endIdx = undefined;
 			this.offsetTop = undefined;
@@ -195,7 +207,8 @@ define([
 		_render : function (startIdx, endIdx) {
 
 			var instance_ = this,
-			restoredScroll;
+				fullLength,
+				restoredScroll;
 
 				// Handle no element
 
@@ -211,7 +224,7 @@ define([
 			endIdx = endIdx + this.nbItemRenderedOffScreen;
 
 
-			var fullLength = this.elementsList.length;
+			fullLength = this.elementsList.length;
 			(startIdx <= 0) ? (startIdx = 0) : startIdx = startIdx;
 			(endIdx >= fullLength) ? (endIdx = fullLength) : endIdx = endIdx;
 
@@ -227,26 +240,28 @@ define([
 
 		},
 
-		_domReady : function(){
+		_domReady : function () {
 			var instance_ = this;
 
-			if (this.onAfterDisplay)
+			if (this.onAfterDisplay) {
 				this.onAfterDisplay();
-
-			if (this.onDomReady)
-				this.onDomReady();
-
-
-			// this.bindScroll();
-
-			function repos(){
-				nextFrame(function(){ instance_.rePositionList.call(instance_, instance_.getScroll()); });
 			}
 
-			if ( this.currentInterval)
-				clearInterval(this.currentInterval);
 
-			this.currentInterval =  setInterval( repos, 50 );
+			if (this.onDomReady) {
+				this.onDomReady();
+			}
+
+			function repos() {
+				nextFrame(function () { instance_.rePositionList.call(instance_, instance_.getScroll()); });
+			}
+
+			if (this.currentInterval) {
+				window.clearInterval(this.currentInterval);
+			}
+
+
+			this.currentInterval =  window.setInterval(repos, 50);
 
 		},
 
@@ -261,8 +276,10 @@ define([
 			// Maybe use request animation frame here
 			var renderedElements, found, elementHtml, inDomEl, oldHeight, jqel;
 
-			if (!this.elementsList || this.elementsList.length === 0)
+			if (!this.elementsList || this.elementsList.length === 0) {
 				return;
+			}
+
 
 			renderedElements = this.elementsList.slice(this.startIdx, this.endIdx);
 			found = _.find(renderedElements, function (el) {
