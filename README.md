@@ -11,6 +11,7 @@ There is still some work to to on edge detection and edge cases.
 
 Works smoothly on Android 4+;
 iOs 5+;
+Tested on firefox, Chrome 34, Android Chrome 34, Safari iOS6 - iOS7 
 
 Demo Available Here : http://ganmor.github.io/backbone-infinite-list/
 
