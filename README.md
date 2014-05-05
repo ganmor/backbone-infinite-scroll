@@ -17,9 +17,8 @@ Tested on firefox, Chrome 34, Android Chrome 34, Safari iOS6 - iOS7
 
 Why 
 ------
-Because the browser does not like when there are too many elements in the dom.
-
-Because mobile browsers *really* don't like when there are too many elements in the dom.
+- Because the browser does not like when there are too many elements in the dom.
+- Because mobile browsers *really* don't like when there are too many elements in the dom.
 
 
 What you can do
