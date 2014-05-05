@@ -14,7 +14,9 @@ Demo Available Here :
 Tested on firefox, Chrome 34, Android Chrome 34, Safari iOS6 - iOS7 
 
 
-TODO: Remove dependency to jQuery
+TODO: 
+- Remove dependency to jQuery
+- DEFAULT_ITEM_HEIGHT, MARGIN_OUT_SCREEN, MARGIN_BOTTOM should be customizable
 
 
 Why 
