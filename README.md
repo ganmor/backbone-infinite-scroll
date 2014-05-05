@@ -6,8 +6,8 @@ A backbone view with infinite scroll ( that really works on mobile )
 
 NOTICE: Code is in working Draft.
 Scroll on the window is not implemented (You can only use overflow scroll / webkit-overflow scroll )
+There is still some work to to on edge detection and edge cases.
 
-WARNING : Still buggy when going up in the list, will fix this asap
 
 Works smoothly on Android 4+;
 iOs 5+;
