@@ -35,6 +35,7 @@ What you can't do
 
 - You can not add elements in the middle of the list while scrolling. ( You would loose you scroll position )
 - You cannot go back to a previous scroll position easely.
+- Backone infinite-scroll does not take care of fetching the data, you'll have to do this yoursel
 
 
 How it works
