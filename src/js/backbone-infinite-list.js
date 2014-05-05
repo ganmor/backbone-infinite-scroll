@@ -32,9 +32,7 @@ define([
 		}
 	});
 
-	var DEFAULT_ITEM_HEIGHT = 50, MARGIN_BOTTOM = 60,
-
-	MARGIN_OUT_SCREEN = 5 * DEFAULT_ITEM_HEIGHT,
+	var DEFAULTS = {},
 
 	getWindowHeight = function () {
 		return $(window).height();
@@ -60,11 +58,17 @@ define([
 	})();
 
 
+	// Default Configuration
+	DEFAULTS.DEFAULT_ITEM_HEIGHT = 50;
+	DEFAULTS.MARGIN_BOTTOM = 60,
+	DEFAULTS.MARGIN_OUT_SCREEN = 5 * DEFAULTS.DEFAULT_ITEM_HEIGHT;
+
 	//
 	//	Implementation
 	//
 
 	return  Backbone.View.extend({
+
 
 		///
 		///	Public Methods
@@ -131,15 +135,19 @@ define([
 		//	Internal Methods, not meant to be overriden
 		//
 
-		_initialize: function() {
+		_initialize: function (config) {
 
 			var fragmentHtml;
 
-			this.ItemHeight = DEFAULT_ITEM_HEIGHT
+			config = config||{};
+
+			this._configuration = _.extend(  DEFAULTS, config);
+
+			this.ItemHeight = this._configuration.DEFAULT_ITEM_HEIGHT
 			this.nbItemRenderedOffScreen = 8;
 			this.initialOffsetTop = this.$el.offset().top;
 
-			this.viewPortHeight = getWindowHeight() - this.$el.offset().top - MARGIN_BOTTOM;
+			this.viewPortHeight = getWindowHeight() - this.$el.offset().top - this._configuration.MARGIN_BOTTOM;
 
 			this.elementsList = this.getData();
 
@@ -157,7 +165,7 @@ define([
 			this.$el.css("-webkit-overflow-scrolling", "touch");
 
 			this.initialStartIdx = 0;
-			this.initialEndIdx = 25;
+			this.initialEndIdx = 35;
 			this.hasNewElements = false;
 
 			this.numberOfItemRendered = this.initialEndIdx - this.initialStartIdx;
@@ -395,29 +403,29 @@ define([
 			var targetOffsetTop, move, willReachTop, isTooCloseToBottom;
 
 
-			 // Check if the bottom of the list is not too close
-			 isTooCloseToBottom = this.offsetBottom < newScroll + this.viewPortHeight +  ( MARGIN_OUT_SCREEN / 2)
+				 // Check if the bottom of the list is not too close
+				 isTooCloseToBottom = this.offsetBottom < newScroll + this.viewPortHeight +  ( this._configuration.MARGIN_OUT_SCREEN / 2)
 
-			 // Where we want the new offset top to be
-			 targetOffsetTop = newScroll - MARGIN_OUT_SCREEN * 2;
+				 // Where we want the new offset top to be
+				 targetOffsetTop = newScroll - this._configuration.MARGIN_OUT_SCREEN * 2;
 
-			 // Compute the move
-			 move =  Math.max( (this.offsetTop - targetOffsetTop) / DEFAULT_ITEM_HEIGHT, 0);
+				 // Compute the move
+				 move =  Math.max( (this.offsetTop - targetOffsetTop) / this._configuration.DEFAULT_ITEM_HEIGHT, 0);
 
-			 // Beginning of line
-			 willReachTop = (this.startIdx-move) <= 0;
+				 // Beginning of line
+				 willReachTop = (this.startIdx-move) <= 0;
 
-			 if ((!isTooCloseToBottom && move>3) || willReachTop) {
+				 if ((!isTooCloseToBottom && move>3) || willReachTop) {
 
-				 move = Math.min(move, this.startIdx); // Easy one
+					 move = Math.min(move, this.startIdx); // Easy one
 
-				 var scrollDiff = newScroll - this.oldScroll;
+					 var scrollDiff = newScroll - this.oldScroll;
 
-				 this.addItemsUp(move, scrollDiff);
-				 this.removeItemsDown(move);
-				 this.reposItems();
+					 this.addItemsUp(move, scrollDiff);
+					 this.removeItemsDown(move);
+					 this.reposItems();
 
-			 }
+				 }
 
 		 },
 
@@ -432,14 +440,14 @@ define([
 			 instance_ = this;
 
 			 // Check if top of the list is not too close
-			 isTooCloseToTop = ( newScroll - this.offsetTop ) < (MARGIN_OUT_SCREEN / 2);
+			 isTooCloseToTop = ( newScroll - this.offsetTop ) < (this._configuration.MARGIN_OUT_SCREEN / 2);
 
 			 // Where list is supposed to end now
-			 targetOffsetBottom = newScroll + this.viewPortHeight + MARGIN_OUT_SCREEN;
+			 targetOffsetBottom = newScroll + this.viewPortHeight + this._configuration.MARGIN_OUT_SCREEN;
 
 
 			 // Now we can compute the desired move
-			 move = Math.max( (targetOffsetBottom - this.offsetBottom) / DEFAULT_ITEM_HEIGHT , 0);
+			 move = Math.max( (targetOffsetBottom - this.offsetBottom) / this._configuration.DEFAULT_ITEM_HEIGHT , 0);
 
 			 // Another move
 			 willReachedBottom = (this.endIdx+move) >= this.elementsList.length;
