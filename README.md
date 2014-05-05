@@ -5,15 +5,13 @@ A backbone view with infinite scroll ( that really works on mobile )
 
 
 NOTICE: Code is in working Draft.
-Scroll on the window is not implemented (You can only use overflow scroll / webkit-overflow scroll )
 There is still some work to to on edge detection and edge cases.
 
+Demo Available Here : http://ganmor.github.io/backbone-infinite-list/
 
-Works smoothly on Android 4+;
-iOs 5+;
 Tested on firefox, Chrome 34, Android Chrome 34, Safari iOS6 - iOS7 
 
-Demo Available Here : http://ganmor.github.io/backbone-infinite-list/
+
 
 
 
