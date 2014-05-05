@@ -1,4 +1,4 @@
-Backbone-Infinite-List
+Backbone-Infinite-Scroll
 ===============================
 
 A backbone view with infinite scroll ( that really works on mobile )
