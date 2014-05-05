@@ -13,9 +13,6 @@ Demo Available Here :
 Tested on firefox, Chrome 34, Android Chrome 34, Safari iOS6 - iOS7 
 
 
-TODO: 
-- Remove dependency to jQuery
-
 
 Why 
 ------
