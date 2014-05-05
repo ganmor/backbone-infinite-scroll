@@ -5,7 +5,6 @@ A backbone view with infinite scroll ( that really works on mobile )
 
 
 NOTICE: Code is in working Draft.
-There is still some work to to on edge detection and edge cases.
 
 Demo Available Here : 
 - Example 1 : 1500 elements dataset : http://ganmor.github.io/backbone-infinite-scroll/
