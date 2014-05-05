@@ -2,7 +2,7 @@
 /* */
 .infinite-scroll-container { 	width:100%; position:relative }
 .infinite-size {  }
-.infinite-feed-container {  }
+.infinite-feed-container { position:absolute  }
 
 
 /* Loader */
