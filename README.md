@@ -5,7 +5,6 @@ A backbone view with infinite scroll ( that really works on mobile )
 
 
 NOTICE: Code is in working Draft.
-There is still some work to to on edge detection and edge cases.
 
 Demo Available Here : 
 - Example 1 : 1500 elements dataset : http://ganmor.github.io/backbone-infinite-scroll/
@@ -13,10 +12,6 @@ Demo Available Here :
 
 Tested on firefox, Chrome 34, Android Chrome 34, Safari iOS6 - iOS7 
 
-
-TODO: 
-- Remove dependency to jQuery
-- DEFAULT_ITEM_HEIGHT, MARGIN_OUT_SCREEN, MARGIN_BOTTOM should be customizable
 
 
 Why 
