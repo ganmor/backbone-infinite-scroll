@@ -96,7 +96,7 @@ displayNewElementAlert : function () {
 
 ```
 var scrollableInstance = new ScrollableImpl();
-scrollablePeople.setElement(theDivToRenderTheListInto);
+scrollableInstance.setElement(theDivToRenderTheListInto);
 scrollableInstance.render();
 
 ```
