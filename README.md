@@ -105,7 +105,7 @@ scrollableInstance.render();
 Installation :
 -------------
 
-Bower :
+Bower : TODO
 
 Developement :
 -------------
